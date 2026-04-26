@@ -134,3 +134,73 @@ footer {
 
 </body>
 </html>
+<section id="timeline">
+    <div class="container">
+        <h2>Línea de Tiempo Histórica</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Lenin_in_1920.jpg">
+                <div class="card-content">
+                    <h3>Lenin (1917)</h3>
+                    <p>Líder de la Revolución Bolchevique y fundador de la Unión Soviética.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/October_Revolution.jpg">
+                <div class="card-content">
+                    <h3>Revolución Rusa</h3>
+                    <p>Caída del zarismo y nacimiento del comunismo en Rusia.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Joseph_Stalin_1942.jpg">
+                <div class="card-content">
+                    <h3>Stalin</h3>
+                    <p>Industrialización acelerada y control total del Estado soviético.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Battle_of_Stalingrad.jpg">
+                <div class="card-content">
+                    <h3>Segunda Guerra Mundial</h3>
+                    <p>La URSS derrota a la Alemania nazi en Stalingrado.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background: #1c1c1c;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+}
