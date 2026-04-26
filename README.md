@@ -3,177 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Museo Virtual de Rusia - Nivel Final</title>
+<title>Museo Virtual de Rusia - Experto Final</title>
 
 <style>
-body{margin:0;font-family:'Segoe UI';background:#0a0a0a;color:white;scroll-behavior:smooth;}
-#progress{position:fixed;top:0;left:0;height:5px;background:red;width:0%;z-index:2000;}
-
-header{background:linear-gradient(120deg,#8b0000,#000);padding:80px;text-align:center;}
-nav{position:sticky;top:0;background:#111;padding:10px;text-align:center;}
-nav a{color:white;margin:10px;text-decoration:none;}
-
-section{padding:80px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(40px);transition:.6s;}
-section.visible{opacity:1;transform:translateY(0);}
-
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
-.card{background:#1a1a1a;border-radius:15px;overflow:hidden;cursor:pointer;transition:.3s;}
-.card:hover{transform:scale(1.05);}
-.card img{width:100%;height:200px;object-fit:cover;}
-
-.modal,.zoom{
-display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,.9);justify-content:center;align-items:center;
-}
-.modal-content{
-background:#111;padding:20px;border-radius:10px;max-width:600px;text-align:center;
-}
-.zoom img{max-width:90%;max-height:90%;}
-.close{color:red;cursor:pointer;font-size:20px}
-
-button{padding:10px;margin:5px;cursor:pointer;}
-
-footer{text-align:center;padding:20px;background:#111;}
+body{margin:0;font-family:sans-serif;background:#0a0a0a;color:white}
+header{background:#8b0000;padding:40px;text-align:center}
+nav{background:#111;padding:10px;text-align:center}
+nav button{margin:5px;padding:10px;cursor:pointer}
+.sala{display:none;padding:40px;max-width:1000px;margin:auto}
+.sala.active{display:block}
+.card{background:#1a1a1a;padding:15px;margin:10px;border-radius:10px;cursor:pointer}
+.card:hover{background:#333}
+.mapa div{display:inline-block;background:#222;padding:20px;margin:10px;cursor:pointer}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;}
+.modal-content{background:#111;padding:20px;border-radius:10px;max-width:600px;text-align:center;}
+.close{color:red;cursor:pointer}
+button{margin:5px;padding:10px}
+footer{text-align:center;padding:20px;background:#111}
 </style>
 
 </head>
 <body>
 
-<div id="progress"></div>
-
 <header>
 <h1>Museo Virtual de Rusia</h1>
-<p>Experiencia completa interactiva</p>
-<button onclick="tour()">🧭 Iniciar recorrido</button>
+<p>Experiencia completa con contenido histórico</p>
+<button onclick="tour()">🧭 Recorrido automático</button>
 </header>
 
 <nav>
-<a href="#timeline">Historia</a>
-<a href="#video">Video</a>
-<a href="#quiz">Quiz</a>
+<button onclick="ir('sala1')">Imperio</button>
+<button onclick="ir('sala2')">Revolución</button>
+<button onclick="ir('sala3')">Stalin</button>
+<button onclick="ir('sala4')">WW2</button>
+<button onclick="ir('mapa')">Mapa</button>
+<button onclick="ir('quiz')">Quiz</button>
 </nav>
 
-<section id="timeline" class="visible">
-<h2>Línea del Tiempo</h2>
+<!-- SALA 1 -->
+<div id="sala1" class="sala active">
+<h2>Imperio Ruso</h2>
+<p>Antes de la revolución, Rusia era un imperio gobernado por el zar Nicolás II. La desigualdad social, la pobreza y la falta de reformas provocaron descontento.</p>
 
-<div class="cards">
-
-<div class="card" onclick="evento('Rasputin','Místico que influyó en los Romanov.','https://upload.wikimedia.org/wikipedia/commons/7/7c/Rasputin_PA.jpg')">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Rasputin_PA.jpg">
-<h3>Rasputin</h3>
+<div class="card" onclick="evento('Rasputin','Grigori Rasputin fue un místico que ganó influencia sobre la familia Romanov. Su presencia debilitó la confianza en el gobierno y contribuyó a la caída del imperio.','https://upload.wikimedia.org/wikipedia/commons/7/7c/Rasputin_PA.jpg')">
+Rasputin
+</div>
 </div>
 
-<div class="card" onclick="evento('Revolución Rusa','En 1917 Lenin lideró la revolución.','https://upload.wikimedia.org/wikipedia/commons/a/a7/October_Revolution.jpg')">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/October_Revolution.jpg">
-<h3>Revolución</h3>
+<!-- SALA 2 -->
+<div id="sala2" class="sala">
+<h2>Revolución Rusa</h2>
+<p>En 1917, el pueblo ruso se rebeló contra el gobierno. Las causas incluyeron hambre, participación en la Primera Guerra Mundial y desigualdad económica.</p>
+
+<div class="card" onclick="evento('Revolución Rusa','La Revolución de Octubre fue liderada por Lenin y los bolcheviques, quienes establecieron el primer estado comunista del mundo.','https://upload.wikimedia.org/wikipedia/commons/a/a7/October_Revolution.jpg')">
+Revolución 1917
+</div>
 </div>
 
-<div class="card" onclick="evento('Stalin','Industrialización y control total.','https://upload.wikimedia.org/wikipedia/commons/3/3e/Joseph_Stalin_1942.jpg')">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Joseph_Stalin_1942.jpg">
-<h3>Stalin</h3>
+<!-- SALA 3 -->
+<div id="sala3" class="sala">
+<h2>Stalin y la URSS</h2>
+<p>Tras la muerte de Lenin, Stalin tomó el poder. Implementó planes industriales y colectivización agrícola, pero también realizó purgas políticas.</p>
+
+<div class="card" onclick="evento('Stalin','Joseph Stalin gobernó con mano dura. Durante su régimen, millones de personas fueron enviadas a campos de trabajo llamados gulags.','https://upload.wikimedia.org/wikipedia/commons/3/3e/Joseph_Stalin_1942.jpg')">
+Gobierno de Stalin
+</div>
 </div>
 
-<div class="card" onclick="evento('WW2','Batalla de Stalingrado decisiva.','https://upload.wikimedia.org/wikipedia/commons/5/5c/Battle_of_Stalingrad.jpg')">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Battle_of_Stalingrad.jpg">
-<h3>WW2</h3>
+<!-- SALA 4 -->
+<div id="sala4" class="sala">
+<h2>Segunda Guerra Mundial</h2>
+<p>La Unión Soviética jugó un papel crucial en la derrota de la Alemania nazi. La batalla de Stalingrado fue uno de los puntos decisivos.</p>
+
+<div class="card" onclick="evento('Stalingrado','La batalla de Stalingrado (1942-1943) fue una de las más sangrientas de la historia y marcó el inicio de la derrota alemana.','https://upload.wikimedia.org/wikipedia/commons/5/5c/Battle_of_Stalingrad.jpg')">
+Batalla de Stalingrado
 </div>
 
-</div>
-</section>
-
-<section id="video">
-<h2>Video histórico</h2>
-<iframe width="100%" height="400"
+<iframe width="100%" height="300"
 src="https://www.youtube.com/embed/1CqGeAmVu1I"
-allowfullscreen></iframe>
-</section>
+title="Historia de la URSS" allowfullscreen></iframe>
 
-<section id="quiz">
-<h2>Quiz</h2>
-<p>¿Quién lideró la Revolución Rusa?</p>
-<button onclick="res('mal')">Stalin</button>
-<button onclick="res('bien')">Lenin</button>
-<button onclick="res('mal')">Rasputin</button>
-<p id="resultado"></p>
+</div>
+
+<!-- MAPA -->
+<div id="mapa" class="sala">
+<h2>Mapa interactivo</h2>
+<p>Explora lugares clave en la historia de Rusia.</p>
+
+<div class="mapa">
+<div onclick="evento('Moscú','Capital de Rusia y centro político e histórico.','https://upload.wikimedia.org/wikipedia/commons/e/e3/Moscow.jpg')">Moscú</div>
+<div onclick="evento('Stalingrado','Escenario de una de las batallas más importantes de la Segunda Guerra Mundial.','https://upload.wikimedia.org/wikipedia/commons/5/5c/Battle_of_Stalingrad.jpg')">Stalingrado</div>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="sala">
+<h2>Quiz Final</h2>
+
+<p>1. ¿Quién lideró la Revolución Rusa?</p>
+<button onclick="check('mal')">Stalin</button>
+<button onclick="check('bien')">Lenin</button>
+
+<p>2. ¿Qué batalla fue clave en la Segunda Guerra Mundial?</p>
+<button onclick="check('bien')">Stalingrado</button>
+<button onclick="check('mal')">Londres</button>
+
 <p>Puntaje: <span id="score">0</span></p>
-</section>
+</div>
 
-<!-- MODAL INFO -->
+<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <span class="close" onclick="cerrar()">X</span>
 <h2 id="t"></h2>
-<img id="img">
+<img id="img" style="width:100%">
 <p id="txt"></p>
 <button onclick="voz()">🎧 Escuchar</button>
 </div>
 </div>
 
-<!-- ZOOM -->
-<div class="zoom" id="zoom" onclick="cerrarZoom()">
-<img id="zoomimg">
-</div>
-
 <footer>
-<p>Museo Virtual - Nivel Final</p>
+<p>Fuentes: Wikipedia y material histórico educativo</p>
 </footer>
 
 <script>
-// SCROLL + PROGRESS
-const sections=document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-if(sec.getBoundingClientRect().top<window.innerHeight-100){
-sec.classList.add("visible");
-}
-});
-let s=document.documentElement.scrollTop;
-let h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-document.getElementById("progress").style.width=(s/h)*100+"%";
-});
+let score=0;
 
-// EVENTO
+// navegación
+function ir(id){
+document.querySelectorAll('.sala').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+// eventos
 function evento(t,txt,img){
 document.getElementById("modal").style.display="flex";
 document.getElementById("t").innerText=t;
 document.getElementById("txt").innerText=txt;
 document.getElementById("img").src=img;
-document.getElementById("img").onclick=()=>zoom(img);
 }
 
-// AUDIO
+// audio
 function voz(){
 let m=new SpeechSynthesisUtterance(document.getElementById("txt").innerText);
 speechSynthesis.speak(m);
 }
 
-// ZOOM
-function zoom(img){
-document.getElementById("zoom").style.display="flex";
-document.getElementById("zoomimg").src=img;
-}
-function cerrarZoom(){
-document.getElementById("zoom").style.display="none";
-}
+// cerrar
+function cerrar(){document.getElementById("modal").style.display="none";}
 
-// CERRAR
-function cerrar(){
-document.getElementById("modal").style.display="none";
-}
-
-// QUIZ
-let score=0;
-function res(r){
-if(r==="bien"){score++;document.getElementById("resultado").innerText="✅ Correcto";}
-else{document.getElementById("resultado").innerText="❌ Incorrecto";}
+// quiz
+function check(r){
+if(r==="bien"){score++;}
 document.getElementById("score").innerText=score;
 }
 
-// TOUR GUIADO
+// tour
 function tour(){
-alert("Iniciando recorrido...");
-document.getElementById("timeline").scrollIntoView({behavior:'smooth'});
-setTimeout(()=>evento('Rasputin','Figura clave del fin del Imperio ruso.','https://upload.wikimedia.org/wikipedia/commons/7/7c/Rasputin_PA.jpg'),2000);
+alert("Recorrido iniciado");
+let salas=["sala1","sala2","sala3","sala4"];
+let i=0;
+let intervalo=setInterval(()=>{
+if(i>=salas.length){clearInterval(intervalo);return;}
+ir(salas[i]);
+i++;
+},3000);
 }
 </script>
 
